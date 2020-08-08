@@ -1,0 +1,35 @@
+package com.demo.prices.request;
+
+import java.time.ZonedDateTime;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
+
+public class PriceRequest {
+
+    private final String plan;
+    private final ZonedDateTime start;
+    private final ZonedDateTime end;
+
+    public PriceRequest(@JsonProperty(required = true, value = "plan") String plan,
+            @JsonProperty(required = true, value = "start") String start,
+            @JsonProperty(required = true, value = "end") String end) {
+        this.plan = plan;
+        this.start = ZonedDateTime.from(ISO_DATE_TIME.parse(start));
+        this.end = ZonedDateTime.from(ISO_DATE_TIME.parse(end));
+    }
+
+    public String getPlan() {
+        return plan;
+    }
+
+    public ZonedDateTime getStart() {
+        return start;
+    }
+
+    public ZonedDateTime getEnd() {
+        return end;
+    }
+
+}
